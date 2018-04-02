@@ -2,8 +2,10 @@ import React from 'react';
 
 const WeatherResult = (props) => (
   <div>
-    <p>Key: {props.listNumber}</p>
-    <p>Forecast: {props.forecast0}</p> 
+    <hr />
+	  <p>{props.forecastDate}</p>
+    <p>{props.forecastDescription}</p>
+    <p>{props.forecastTemperature}&deg;C</p>
   </div>
 )
 

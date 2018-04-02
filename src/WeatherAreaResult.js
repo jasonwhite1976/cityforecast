@@ -1,10 +1,18 @@
 import React from 'react';
 
 const WeatherAreaResult = (props) => (
+
   <div>
-    <h2>Weather forecast</h2>
-    <p>Area found: {props.areaName} {props.countryName}</p>
+    {props.areaName
+    ?
+    <div>
+    <h2>{props.areaName} {props.countryName}</h2>
+    </div>
+    :
+    <div></div>
+    }
   </div>
+
 )
 
 export default WeatherAreaResult
