@@ -4,8 +4,8 @@ const WeatherResult = (props) => (
   <div>
     <hr />
 	  <p>{props.forecastDate}</p>
-    <p>{props.forecastDescription}</p>
-    <p>{props.forecastTemperature}&deg;C</p>
+    <p className="first-letter-capitals">{props.forecastDescription} <i className={props.forecastIcon}></i> </p>
+    <p>Temp - {props.forecastTemperature}&deg;C</p>
   </div>
 )
 

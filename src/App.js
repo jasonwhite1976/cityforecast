@@ -79,13 +79,20 @@ class App extends Component {
     return this.uniqueId++;
   }
 
+  /*
+  String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+  }
+  */
+
 
   eachForecastList(forecastList) {
 
   let listId = this.nextId();
 
-	console.log(forecastList.weather[0])
-	let description = forecastList.weather[0].description
+	console.log(forecastList.weather[0]);
+	let description = forecastList.weather[0].description;
+  //description = description.capitalize();
 
   let celsius = Math.round(forecastList.main.temp * 10) / 10;
   //console.log(celsius);
@@ -94,11 +101,45 @@ class App extends Component {
 	forecastDate = forecastDate.toLocaleTimeString(navigator.language, {weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute:'2-digit'});
 	//console.log(forecastTime);
 
+  const weatherIconResponseCode = forecastList.weather[0].icon;
+  let weatherIconHTML;
+
+  if(weatherIconResponseCode === '01d' || weatherIconResponseCode === '01n'){ // Clear
+    weatherIconHTML = 'wi wi-day-sunny';
+  }
+  else if(weatherIconResponseCode === '02d' ||
+     weatherIconResponseCode === '02n' ||
+     weatherIconResponseCode === '03d' ||
+     weatherIconResponseCode === '03n' ||
+     weatherIconResponseCode === '04d' ||
+     weatherIconResponseCode === '04n') { //Clouds
+      weatherIconHTML = 'wi wi-cloudy';
+  }
+  else if(weatherIconResponseCode === '09d' ||
+     weatherIconResponseCode === '09n' ||
+     weatherIconResponseCode === '10d' ||
+     weatherIconResponseCode === '10n') { //Rain
+      weatherIconHTML = 'wi wi-rain';
+  }
+  else if(weatherIconResponseCode === '11d' || weatherIconResponseCode === '11n'){ //Storm
+      weatherIconHTML = 'wi wi-storm-showers';
+  }
+  else if(weatherIconResponseCode === '13d' || weatherIconResponseCode === '13n'){ //Snow
+      weatherIconHTML = 'wi wi-snow';
+  }
+  else if(weatherIconResponseCode === '50d' || weatherIconResponseCode === '50n'){ //Mist
+      weatherIconHTML = 'wi wi-fog';
+  }
+  else {
+      weatherIconHTML = '';
+  }
+
 	return (
     <WeatherResult
 	    key={listId}
 		  forecastDate={forecastDate}
 		  forecastDescription={description}
+		  forecastIcon={weatherIconHTML}
 		  forecastTemperature={celsius}
 		  listNumber={listId} />
     )

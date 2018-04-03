@@ -1,3 +1,7 @@
 h1, p {
   font-family: Lato;
 }
+
+.first-letter-capitals {
+  text-transform: capitalize;
+}
